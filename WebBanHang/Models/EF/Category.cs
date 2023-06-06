@@ -17,15 +17,16 @@ namespace WebBanHang.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
-
+        [Required(ErrorMessage ="Tên danh mục không được bỏ trống")]
+        [StringLength(150)]
         public string Title { set; get; }
 
         public string Description { get; set; }
-
+        [StringLength(150)]
         public string SeoTitle { set; get; }
-
+        [StringLength(150)]
         public string SeoDescription { set; get; }
-
+        [StringLength(150)]
         public string SeoKeywords { get; set; }
 
         public int Position { set; get; }

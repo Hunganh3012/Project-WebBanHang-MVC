@@ -275,6 +275,10 @@
     <Compile Include="Migrations\202306060832085_add-DB.Designer.cs">
       <DependentUpon>202306060832085_add-DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306061038419_updateCategory.cs" />
+    <Compile Include="Migrations\202306061038419_updateCategory.Designer.cs">
+      <DependentUpon>202306061038419_updateCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
@@ -2283,6 +2287,7 @@
     <Content Include="Content\Client\plugins\toastr\toastr.js.map" />
     <Content Include="Areas\Admin\Views\Shared\_PartialSideBar.cshtml" />
     <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2349,6 +2354,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202306060832085_add-DB.resx">
       <DependentUpon>202306060832085_add-DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306061038419_updateCategory.resx">
+      <DependentUpon>202306061038419_updateCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
