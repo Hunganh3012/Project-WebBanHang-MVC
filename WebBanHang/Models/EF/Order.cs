@@ -24,6 +24,7 @@ namespace WebBanHang.Models.EF
         [Required]
         public string CustomName { set; get; }
 
+
         [Required]
         public string Phone { set; get; }
 
@@ -33,6 +34,8 @@ namespace WebBanHang.Models.EF
         public decimal TotalAmount { set; get; }
 
         public int Quantity { set; get; }
+
+        public bool? isDelete { set; get; }
 
         public ICollection<OrderDetail> OrderDetails { set; get; }
 

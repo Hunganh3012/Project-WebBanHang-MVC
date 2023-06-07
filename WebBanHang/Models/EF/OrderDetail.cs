@@ -20,7 +20,10 @@ namespace WebBanHang.Models.EF
 
         public decimal Price { set; get; }
 
+
         public int Quantiy { set; get; }
+
+        public bool? isDelete { set; get; }
 
         public virtual Order Order {set; get;}
 

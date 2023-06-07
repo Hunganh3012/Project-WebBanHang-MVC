@@ -34,5 +34,7 @@ namespace WebBanHang.Models.EF
         public string SeoKeywords { get; set; }
 
         public virtual Category Category { set; get; }
+
+        public bool? isDelete { set; get; }
     }
 }

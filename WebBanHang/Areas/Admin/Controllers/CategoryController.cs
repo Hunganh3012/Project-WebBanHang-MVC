@@ -68,5 +68,19 @@ namespace WebBanHang.Areas.Admin.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult UpdateD (int id)
+        {
+            var item = db.Categories.Where(e => e.Id == id);
+                foreach (var i in item)
+                {
+                    i.isDelete = true;
+                }
+                var result =  db.Categories.Where(row => row.isDelete != true).ToList();
+                db.SaveChanges();
+                return  Json( new { success = result });
+            return Json(new { success = false });
+        }
     }
 }

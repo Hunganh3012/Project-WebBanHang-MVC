@@ -16,6 +16,8 @@ namespace WebBanHang.Models.EF
 
         public string Email { set; get; }
 
+        public bool? isDelete { set; get; }
+
         public DateTime CreateDate { set; get; }
     }
 }

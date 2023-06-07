@@ -28,6 +28,7 @@ namespace WebBanHang.Models.EF
 
         public decimal Price { set; get; }
 
+
         public decimal PriceSale { set; get; }
 
         public int Quantity { set; get; }
@@ -50,6 +51,8 @@ namespace WebBanHang.Models.EF
         public string SeoDescription { set; get; }
 
         public string SeoKeywords { get; set; }
+
+        public bool? isDelete { set; get; }
 
         public virtual ProductCategory ProductCategory { set; get; }
     }

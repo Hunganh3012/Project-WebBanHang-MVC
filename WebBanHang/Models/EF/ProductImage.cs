@@ -20,5 +20,7 @@ namespace WebBanHang.Models.EF
 
         public bool IsDefault { set; get; }
 
+        public bool? isDelete { set; get; }
+
     }
 }

@@ -33,6 +33,8 @@ namespace WebBanHang.Models.EF
 
         public int Position { set; get; }
 
+        public bool? isDelete { set; get; }
+
         public ICollection<News> News { set; get; }
         
         public ICollection<Post> Posts { set; get; }

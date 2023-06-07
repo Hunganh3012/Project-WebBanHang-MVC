@@ -28,9 +28,12 @@ namespace WebBanHang.Models.EF
 
         public string SeoTitle { set; get; }
 
+
         public string SeoDescription { set; get; }
 
         public string SeoKeywords { get; set; }
+
+        public bool? isDelete { set; get; }
 
         public virtual Category Category { set; get; }
     }
