@@ -31,6 +31,7 @@ namespace WebBanHang.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     model.CreateDate = DateTime.Now;
+                    model.CategoryId = 3;
                     model.ModifiedDate = DateTime.Now;
                     model.Alias = WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
                     db.News.Add(model);
