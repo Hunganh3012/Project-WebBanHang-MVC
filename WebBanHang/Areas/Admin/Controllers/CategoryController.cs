@@ -10,11 +10,11 @@ namespace WebBanHang.Areas.Admin.Controllers
 {
     public class CategoryController : Controller
     {
-        private ApplicationDbContext _dbConnect = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Category
         public ActionResult Index()
         {
-            var item = _dbConnect.Categories;
+            var item =db.Categories;
             return View(item);
         }
         public ActionResult Add()
@@ -28,10 +28,45 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.CreateDate = DateTime.Now;
+                model.ModifiedDate = DateTime.Now;
+                model.Position = 1; //Thứ tự
+                //Tạo đường link như tên miền nên không cần dấu(filtercha thì có dấu gạch 
+                //vd:tin-tuc, danh-muc
+                model.Alias =WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
+                db.Categories.Add(model);
+                db.SaveChanges();
             return RedirectToAction("Index");
             }
             return View(model);
             //chuyển hướng người dùng đến phương thức hành động "Index" của cùng một controller
+        }
+        public ActionResult Edit( int id)
+        {
+            var item = db.Categories.Find(id);
+            return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Categories.Attach(model);
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
+                db.Entry(model).Property(x => x.Title).IsModified = true;
+                db.Entry(model).Property(x => x.Description).IsModified = true;
+                db.Entry(model).Property(x => x.Alias).IsModified = true;
+                db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;
+                db.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                db.Entry(model).Property(x => x.Position).IsModified = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(model);
         }
     }
 }

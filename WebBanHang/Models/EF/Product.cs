@@ -20,6 +20,8 @@ namespace WebBanHang.Models.EF
 
         public string Description { get; set; }
 
+        public string Alias { set; get; }
+
         public string Detail { set; get; }
 
         public string Image { set; get; }
