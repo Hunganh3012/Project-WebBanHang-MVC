@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebBanHang.Models.EF
 {
@@ -13,12 +14,13 @@ namespace WebBanHang.Models.EF
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { set; get; }
-        [Required]
+        [Required(ErrorMessage ="Không được bỏ trống tiêu đề tin tức")]
         [StringLength(150)]
         public string Title { set; get; }
 
         public string Description { get; set; }
 
+        [AllowHtml]
         public string Detail { set; get; }
 
         public string Alias { set; get; }
