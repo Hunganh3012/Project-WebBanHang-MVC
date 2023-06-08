@@ -47,5 +47,48 @@ namespace WebBanHang.Areas.Admin.Controllers
             }
 
         }
+        public ActionResult Edit(int id)
+        {
+            var item = db.News.Find(id);
+            return View(item);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(News model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.News.Attach(model);
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+             
+            }
+            return View(model);
+            }
+
+        [HttpPost]
+        public ActionResult UpdateD(int id)
+        {
+            try
+            {
+                var item = db.News.Where(x => x.Id== id);
+               foreach(var e in item)
+                {
+                    e.IsDelete = true;
+                }
+                var result = db.News.Where(row => row.IsDelete != true).ToList();
+                db.SaveChanges();
+                return Json(new { success = result });
+                return Json(new { success = false });
+            }
+            catch(Exception ex)
+                {
+                    throw;
+                }
+        }
     }
 }

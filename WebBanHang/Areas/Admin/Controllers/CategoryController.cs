@@ -75,9 +75,9 @@ namespace WebBanHang.Areas.Admin.Controllers
             var item = db.Categories.Where(e => e.Id == id);
                 foreach (var i in item)
                 {
-                    i.isDelete = true;
+                    i.IsDelete = true;
                 }
-                var result =  db.Categories.Where(row => row.isDelete != true).ToList();
+                var result =  db.Categories.Where(row => row.IsDelete != true).ToList();
                 db.SaveChanges();
                 return  Json( new { success = result });
             return Json(new { success = false });

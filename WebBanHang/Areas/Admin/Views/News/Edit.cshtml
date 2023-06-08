@@ -1,9 +1,9 @@
 ﻿@model WebBanHang.Models.EF.News
 @{
-    ViewBag.Title = "Thêm tin tức";
+    ViewBag.Title = "Chỉnh sửa cập nhật tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Content/ckeditor/ckeditor.js"></script>
+
 
 @section naviheader{
     <ul class="navbar-nav">
@@ -14,10 +14,10 @@
             <a href="/admin/Category" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/Category" class="nav-link">Danh mục</a>
+            <a href="/admin/Category" class="nav-link">Tin tức</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Thêm mới</a>
+            <a href="#" class="nav-link">Cập nhật</a>
         </li>
     </ul>
 }
@@ -27,12 +27,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Thêm mới tin tức</h1>
+                <h1>Cập nhật tin tức</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Tin tức</a></li>
-                    <li class="breadcrumb-item active">Thêm mới</li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
         </div>
@@ -45,14 +45,17 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin thêm mới tin tức</h3>
+            <h3 class="card-title">Thông tin cập nhật tin tức</h3>
         </div>
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Add", "News", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(false)
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.HiddenFor(x=>x.CreateDate)
+                    @Html.HiddenFor(x=>x.CategoryId)
                     <!-- your steps content here -->
                 <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
                     <div class="form-group">
@@ -82,8 +85,8 @@
                     </div>
                     <div class="form-group">
                         <label>Hiển thị</label>
-                        @Html.CheckBoxFor(x => x.IsActive, new { @checked = "@checked" })
-
+                        @Html.CheckBoxFor(x => x.IsActive, new {@checked="@checked" })
+                    
                     </div>
                     <div class="form-group">
                         <label>Seo Title</label>
@@ -99,7 +102,7 @@
                     </div>
                     <div class="form-group">
                         <a href="/admin/category" class="btn btn-danger">Quay lại </a>
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
 
                 </div>
@@ -120,7 +123,7 @@
 <!-- /.content -->
 
 @section scripts{
-       <script>
+    <script>
            $(document).ready(function () {
                CKEDITOR.replace('txtDetail', {
                    customConfig: '/content/ckeditor/config.js',
@@ -134,5 +137,6 @@
                }
                finder.popup();
            }
-       </script>
-    }
+    </script>
+}
+
