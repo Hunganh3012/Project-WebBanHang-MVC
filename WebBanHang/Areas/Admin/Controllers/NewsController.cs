@@ -73,8 +73,6 @@ namespace WebBanHang.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult UpdateD(int id)
         {
-            try
-            {
                 db.Configuration.ProxyCreationEnabled = false;
                 var item = db.News.Where(x => x.Id== id);
                foreach(var e in item)
@@ -85,11 +83,22 @@ namespace WebBanHang.Areas.Admin.Controllers
                 db.SaveChanges();
                 return Json(new { success = result });
                 return Json(new { success = false });
-            }
-            catch(Exception ex)
-                {
-                    throw;
-                }
+        }
+        [HttpPost]
+        public ActionResult UpdateDAll(List<int> ids)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            var items = db.News.Where(x => ids.Contains(x.Id)).ToList();
+
+                    foreach (var item in items)
+                    {
+                        item.IsDelete = true;
+                    }
+                    db.SaveChanges(); // Lưu các thay đổi vào cơ sở dữ liệu
+
+                    var result = db.News.Where(x => x.IsDelete != true).ToList();
+            return Json(new { success = result });
+            return Json(new { success = false });
         }
     }
 }
