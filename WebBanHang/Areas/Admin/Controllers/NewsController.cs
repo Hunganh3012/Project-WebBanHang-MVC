@@ -75,6 +75,7 @@ namespace WebBanHang.Areas.Admin.Controllers
         {
             try
             {
+                db.Configuration.ProxyCreationEnabled = false;
                 var item = db.News.Where(x => x.Id== id);
                foreach(var e in item)
                 {
