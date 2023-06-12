@@ -14,47 +14,72 @@ namespace WebBanHang.Areas.Admin.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            var item=db.News.OrderByDescending(x=>x.CreateDate).ToList();
-            return View(item);
+            var items = db.News.OrderByDescending(x => x.CreateDate).ToList();
+
+            foreach (var item in items)
+            {
+                if (!string.IsNullOrEmpty(item.SelectedCategoryIds))
+                {
+                    var selectedCategoryIds = item.SelectedCategoryIds.Split(',');
+
+                    var categories = db.Categories.Where(c => selectedCategoryIds.Contains(c.Id.ToString())).Select(c => c.Title);
+
+                    item.CategoryString = string.Join(", ", categories);
+                }
+            }
+
+            return View(items);
         }
-        public ActionResult Add()
+          public ActionResult Add()
         {
+            var result = (from Category in db.Categories select Category).ToList();
+            if (result != null)
+            {
+                ViewBag.MyCate = result.Select(x => new SelectListItem { Text = x.Title, Value = x.Id.ToString() });
+            }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(News model)
+        public ActionResult Add(News model, string[] selectedCategories)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     model.CreateDate = DateTime.Now;
-                    model.CategoryId = 3;
                     model.ModifiedDate = DateTime.Now;
                     model.Alias = WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
+
+                    if (selectedCategories != null)
+                    {
+                        model.SelectedCategoryIds = string.Join(",", selectedCategories);
+                    }
+
                     db.News.Add(model);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
                 return View(model);
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
-
         }
         public ActionResult Edit(int id)
         {
             var item = db.News.Find(id);
+            var categories = db.Categories.ToList();
+            var categoryList = new SelectList(categories, "Id", "Title");
+
+            ViewBag.CategoryList = categoryList;
             return View(item);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(News model)
+        public ActionResult Edit(News model, string[] selectedCategories)
         {
 
             if (ModelState.IsValid)
@@ -62,6 +87,10 @@ namespace WebBanHang.Areas.Admin.Controllers
                 db.News.Attach(model);
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHang.Models.Commons.Filter.FilterChar(model.Title);
+                if (selectedCategories != null)
+                {
+                    model.SelectedCategoryIds = string.Join(",", selectedCategories);
+                }
                 db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

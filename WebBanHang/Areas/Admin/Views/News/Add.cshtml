@@ -86,6 +86,21 @@
 
                     </div>
                     <div class="form-group">
+                        <label>Lựa chọn tin tức</label>
+                        <select class="js-example-basic-multiple" name="SelectedCategories" multiple="multiple" style="width: 1000px">
+                            @if (ViewBag.MyCate != null)
+                            {
+                                foreach (var item in ViewBag.MyCate)
+                                {
+                                      <option value="@item.Value" >
+                                        @item.Text
+                                    </option>
+                                }
+                            }
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
                         <label>Seo Title</label>
                         @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control", @placeholder = "Seo Title" })
                     </div>
@@ -99,7 +114,7 @@
                     </div>
                     <div class="form-group">
                         <a href="/admin/category" class="btn btn-danger">Quay lại </a>
-                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                        <button type="submit" class="btn btn-primary sumbit-form">Xác nhận</button>
                     </div>
 
                 </div>
@@ -120,7 +135,39 @@
 <!-- /.content -->
 
 @section scripts{
+
        <script>
+
+           $(document).ready(function () {
+               $('.js-example-basic-multiple').select2();
+               placeholder: 'Chọn '
+           });
+           $(document).ready(function () {
+               $('.js-example-basic-multiple').select2();
+
+               // Xử lý sự kiện khi danh mục được chọn
+               $('input[name="selectedCategories"]').on('change', function () {
+                   var selectedIds = $('input[name="selectedCategories"]:checked')
+                       .map(function () { return this.value; })
+                       .get()
+                       .join(',');
+
+                   // Cập nhật giá trị của SelectedCategoryIds
+                   $('#SelectedCategoryIds').val(selectedIds);
+                   console.log(selectedIds);
+               });
+               $('body').on('click', '.sumbit-form', function () {
+                   var selectedIds = $('input[name="selectedCategories"]:checked')
+                       .map(function () { return this.value; })
+                       .get()
+                       .join(',');
+
+                   // Cập nhật giá trị của SelectedCategoryIds
+                   $('#SelectedCategoryIds').val(selectedIds);
+                   console.log(selectedIds);
+               });
+           });
+
            $(document).ready(function () {
                CKEDITOR.replace('txtDetail', {
                    customConfig: '/content/ckeditor/config.js',

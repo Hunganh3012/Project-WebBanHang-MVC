@@ -85,9 +85,21 @@
                     </div>
                     <div class="form-group">
                         <label>Hiển thị</label>
-                        @Html.CheckBoxFor(x => x.IsActive, new {@checked="@checked" })
-                    
+                        @Html.CheckBoxFor(x => x.IsActive, new { @checked = "@checked" })
+
                     </div>
+                    <div class="form-group">
+                        <label>Lựa chọn danh mục</label>
+                        <select class="js-example-basic-multiple" name="selectedCategories[]" multiple="multiple" style="width: 1000px">
+                            @foreach (var category in ViewBag.CategoryList)
+                            {
+                                <option value="@category.Value" @(Model.SelectedCategoryIds != null && Model.SelectedCategoryIds.Contains(category.Value) ? "selected" : "")>
+                                    @category.Text
+                                </option>
+                            }
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label>Seo Title</label>
                         @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control", @placeholder = "Seo Title" })
@@ -102,7 +114,7 @@
                     </div>
                     <div class="form-group">
                         <a href="/admin/category" class="btn btn-danger">Quay lại </a>
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary" id="update-form">Cập nhật</button>
                     </div>
 
                 </div>
@@ -124,7 +136,14 @@
 
 @section scripts{
     <script>
-           $(document).ready(function () {
+        $(document).ready(function () {
+            $('body').on('click', 'update-form', function () {
+            });
+            $('.js-example-basic-multiple').select2({
+                placeholder: 'Chọn '
+            });
+            
+
                CKEDITOR.replace('txtDetail', {
                    customConfig: '/content/ckeditor/config.js',
                    extraAllowedContent: 'span',

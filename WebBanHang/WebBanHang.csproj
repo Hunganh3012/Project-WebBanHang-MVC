@@ -278,25 +278,21 @@
     </Compile>
     <Compile Include="Implemention\interfaces\ICategoryService.cs" />
     <Compile Include="Implemention\interfaces\INewsService.cs" />
-    <Compile Include="Migrations\202306060832085_add-DB.cs" />
-    <Compile Include="Migrations\202306060832085_add-DB.Designer.cs">
-      <DependentUpon>202306060832085_add-DB.cs</DependentUpon>
+    <Compile Include="Migrations\202306111535130_update-again.cs" />
+    <Compile Include="Migrations\202306111535130_update-again.Designer.cs">
+      <DependentUpon>202306111535130_update-again.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306061038419_updateCategory.cs" />
-    <Compile Include="Migrations\202306061038419_updateCategory.Designer.cs">
-      <DependentUpon>202306061038419_updateCategory.cs</DependentUpon>
+    <Compile Include="Migrations\202306111546011_update-key.cs" />
+    <Compile Include="Migrations\202306111546011_update-key.Designer.cs">
+      <DependentUpon>202306111546011_update-key.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306070201195_updateData.cs" />
-    <Compile Include="Migrations\202306070201195_updateData.Designer.cs">
-      <DependentUpon>202306070201195_updateData.cs</DependentUpon>
+    <Compile Include="Migrations\202306111603588_update-Cateogry.cs" />
+    <Compile Include="Migrations\202306111603588_update-Cateogry.Designer.cs">
+      <DependentUpon>202306111603588_update-Cateogry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306070350314_update-isDelete.cs" />
-    <Compile Include="Migrations\202306070350314_update-isDelete.Designer.cs">
-      <DependentUpon>202306070350314_update-isDelete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202306080250120_update-key.cs" />
-    <Compile Include="Migrations\202306080250120_update-key.Designer.cs">
-      <DependentUpon>202306080250120_update-key.cs</DependentUpon>
+    <Compile Include="Migrations\202306120130122_createCategoryString.cs" />
+    <Compile Include="Migrations\202306120130122_createCategoryString.Designer.cs">
+      <DependentUpon>202306120130122_createCategoryString.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3283,20 +3279,17 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306060832085_add-DB.resx">
-      <DependentUpon>202306060832085_add-DB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306111535130_update-again.resx">
+      <DependentUpon>202306111535130_update-again.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306061038419_updateCategory.resx">
-      <DependentUpon>202306061038419_updateCategory.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306111546011_update-key.resx">
+      <DependentUpon>202306111546011_update-key.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306070201195_updateData.resx">
-      <DependentUpon>202306070201195_updateData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306111603588_update-Cateogry.resx">
+      <DependentUpon>202306111603588_update-Cateogry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306070350314_update-isDelete.resx">
-      <DependentUpon>202306070350314_update-isDelete.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202306080250120_update-key.resx">
-      <DependentUpon>202306080250120_update-key.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202306120130122_createCategoryString.resx">
+      <DependentUpon>202306120130122_createCategoryString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -27,7 +27,7 @@ namespace WebBanHang.Models.EF
 
         public string Image { set; get; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         public string SeoTitle { set; get; }
 
@@ -35,8 +35,11 @@ namespace WebBanHang.Models.EF
 
         public string SeoKeywords { get; set; }
 
-        public virtual Category Category { set; get; }
-        
+        public virtual ICollection<Category> Categories { set; get; }
+
+        public string SelectedCategoryIds { get; set; }
+        public string CategoryString { get; set; }
+
         public bool IsActive { set; get; }
 
         public bool? IsDelete { set; get; }

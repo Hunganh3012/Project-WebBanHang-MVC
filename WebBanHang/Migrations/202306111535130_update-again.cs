@@ -3,7 +3,7 @@ namespace WebBanHang.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addDB : DbMigration
+    public partial class updateagain : DbMigration
     {
         public override void Up()
         {
@@ -17,6 +17,7 @@ namespace WebBanHang.Migrations
                         Link = c.String(maxLength: 500),
                         Image = c.String(maxLength: 500),
                         Type = c.String(),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -29,12 +30,15 @@ namespace WebBanHang.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
+                        Title = c.String(nullable: false, maxLength: 150),
                         Description = c.String(),
-                        SeoTitle = c.String(),
-                        SeoDescription = c.String(),
-                        SeoKeywords = c.String(),
+                        Alias = c.String(),
+                        SeoTitle = c.String(maxLength: 150),
+                        SeoDescription = c.String(maxLength: 150),
+                        SeoKeywords = c.String(maxLength: 150),
+                        IsActive = c.Boolean(nullable: false),
                         Position = c.Int(nullable: false),
+                        IsDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -50,11 +54,14 @@ namespace WebBanHang.Migrations
                         Title = c.String(nullable: false, maxLength: 150),
                         Description = c.String(),
                         Detail = c.String(),
+                        Alias = c.String(),
                         Image = c.String(),
                         CategoryId = c.Int(nullable: false),
                         SeoTitle = c.String(),
                         SeoDescription = c.String(),
                         SeoKeywords = c.String(),
+                        IsActive = c.Boolean(nullable: false),
+                        IsDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -72,11 +79,13 @@ namespace WebBanHang.Migrations
                         Title = c.String(),
                         Description = c.String(),
                         Detail = c.String(),
+                        Alias = c.String(),
                         Image = c.String(),
                         CategoryId = c.Int(nullable: false),
                         SeoTitle = c.String(),
                         SeoDescription = c.String(),
                         SeoKeywords = c.String(),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -96,6 +105,7 @@ namespace WebBanHang.Migrations
                         Website = c.String(),
                         Message = c.String(maxLength: 4000),
                         IsRead = c.Boolean(nullable: false),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -112,6 +122,7 @@ namespace WebBanHang.Migrations
                         ProductId = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Quantiy = c.Int(nullable: false),
+                        isDelete = c.Boolean(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.tb_Order", t => t.OrderId, cascadeDelete: true)
@@ -130,6 +141,7 @@ namespace WebBanHang.Migrations
                         Address = c.String(nullable: false),
                         TotalAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Quantity = c.Int(nullable: false),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -145,6 +157,7 @@ namespace WebBanHang.Migrations
                         Title = c.String(),
                         ProductCode = c.String(),
                         Description = c.String(),
+                        Alias = c.String(),
                         Detail = c.String(),
                         Image = c.String(),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -158,6 +171,7 @@ namespace WebBanHang.Migrations
                         SeoTitle = c.String(),
                         SeoDescription = c.String(),
                         SeoKeywords = c.String(),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -177,6 +191,7 @@ namespace WebBanHang.Migrations
                         SeoTitle = c.String(),
                         SeoDescription = c.String(),
                         SeoKeywords = c.String(),
+                        isDelete = c.Boolean(),
                         CreateBy = c.String(),
                         CreateDate = c.DateTime(nullable: false),
                         ModifiedDate = c.DateTime(nullable: false),
@@ -213,6 +228,7 @@ namespace WebBanHang.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Email = c.String(),
+                        isDelete = c.Boolean(),
                         CreateDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

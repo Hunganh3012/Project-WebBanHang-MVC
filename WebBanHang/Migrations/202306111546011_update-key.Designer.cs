@@ -13,7 +13,7 @@ namespace WebBanHang.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202306080250120_update-key"; }
+            get { return "202306111546011_update-key"; }
         }
         
         string IMigrationMetadata.Source

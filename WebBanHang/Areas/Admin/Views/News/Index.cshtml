@@ -57,6 +57,7 @@
                         <th>Hình ảnh</th>
                         <th>Tiêu đề tin tức</th>
                         <th>Ngày tạo</th>
+                        <th>Danh mục quản lý</th>
                         <th>Hiển thị</th>
                         <th>Thứ tự</th>
                     </tr>
@@ -82,6 +83,7 @@
                                     </td>
                                     <td>@item.Title</td>
                                     <td>@item.CreateDate.ToString("dd/MM/yyyy")</td>
+                                    <td> @item.CategoryString</td>
                                     <td>
                                         @Html.Raw(strcheck)
                                     </td>
@@ -117,6 +119,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+           
             $('body').on('click', '#BtnDeleteAll', function (e) {
                 console.log(e)
                 e.preventDefault();
